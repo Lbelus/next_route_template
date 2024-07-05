@@ -29,6 +29,49 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
+
+
+## Create manage your Docker container
+
+Generate the image;
+```bash
+sudo docker build -t img_next .
+```
+Create the container
+```bash
+sudo docker run -it -v /PathToMyProject/:/workspace --name cont_next img_next
+```
+The container is created but currently stopped
+```bash
+sudo docker start -ai cont_next
+```
+The container is created but currently running
+```bash
+sudo docker exec -it cont_next /bin/bash
+```
+
+## Environement Variables
+
+To work that project will require api keys and various variable. 
+Create a .env.local file with those variables :
+```txt
+GOOGLE_ID=
+GOOGLE_SECRET=
+NEXTAUTH_URL=
+SECRET=
+FIREBASE_API_KEY=
+FIREBASE_AUTH_DOMAIN=
+FIREBASE_PROJECT_ID=
+FIREBASE_STORAGE_BUCKET=
+FIREBASE_MESSAGING_SENDER_ID=
+FIREBASE_APP_ID=
+FIREBASE_MEASUREMENT_ID=
+GOOGLE_APPLICATION_CREDENTIALS=./service-account.json
+AUTH_FIREBASE_PRIVATE_KEY=
+AUTH_FIREBASE_CLIENT_EMAIL=
+AUTH_FIREBASE_PROJECT_ID=
+```
+
 ## AUTH
 
 Obtain given https address from tunneling and add it to .env file and your google console developper authorized url
@@ -90,7 +133,7 @@ In the Firebase console, navigate to Storage.
 
 ### server identification
 Google cloud console does not recognize localhost as a valid https address.
-to address ``:)`` that situation, you will use a tunneling service to obtain a valid https address. 
+To address ``:)`` that situation, you will use a tunneling service to obtain a valid https address. 
 
 For google cloud services to work you will need to add the web client address in the credentials. 
 

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import { useSession } from "next-auth/react"
+import Link from "next/link";
 
 const UpdateUserInfo = () => {
   const router = useRouter();
@@ -26,7 +27,7 @@ if (!session) {
   }
   useEffect(() => {
     if (session?.user?.email) {
-      fetch(`/api/getUserDocData?email=${encodeURIComponent(session.user.email)}`)
+      fetch(`/api/readUserDocData?email=${encodeURIComponent(session.user.email)}`)
         .then(res => res.json())
         .then(data => {
           setcollectionId(data.id)  // Store the fetched data in state
@@ -63,7 +64,7 @@ if (!session) {
       bio
     };
 
-    fetch('/api/setUserDocData', {
+    fetch('/api/updateUserDocData', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -89,9 +90,9 @@ if (!session) {
           <div className="col-span-5 xl:col-span-3">
             <div className="rounded-sm border border-stroke  ">
               <div className="border-b border-stroke px-7 py-4 ">
-                <h3 className="font-medium">
-                  Personal Information
-                </h3>
+                <h2 className="text-2xl font-bold mb-6 text-center">
+                  Update Personal Information
+                </h2>
               </div>
               <div className="p-7">
                 <form onSubmit={handleSubmit}>
@@ -292,7 +293,15 @@ if (!session) {
               </div>
             </div>
           </div>
+          <section className="mb-8">
+          <Link href="/private">
+            <div className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100 hover:underline">
+              Go to private page
+            </div>
+          </Link>
+        </section>
         </div>
+        
   );
 };
 

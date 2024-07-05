@@ -28,7 +28,7 @@ const DisplayUserInfo = ({}) => {
   }
   useEffect(() => {
     if (session?.user?.email) {
-      fetch(`/api/getUserDocData?email=${encodeURIComponent(session.user.email)}`)
+      fetch(`/api/readUserDocData?email=${encodeURIComponent(session.user.email)}`)
         .then(res => res.json())
         .then(data => {
           setUserData(data);
@@ -53,9 +53,9 @@ const DisplayUserInfo = ({}) => {
   return (
     <>
     <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
-      <h3 className="font-medium text-black dark:text-white">
+      <h2 className="text-2xl font-bold mb-6 text-center">
         Personal Information
-      </h3>
+      </h2>
       document Id: {documentId} <br></br>
       username: {username} <br></br>
       Email : {emailAddress} <br></br>
@@ -74,7 +74,7 @@ const DisplayUserInfo = ({}) => {
               Go to private page
             </div>
           </Link>
-        </section>
+    </section>
   </>
   );
 };

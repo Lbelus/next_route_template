@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import LogIn from "../components/login-btn";
+import LogIn from "../components/session/login-btn";
 
 export default function Home() {
   return (

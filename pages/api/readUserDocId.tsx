@@ -39,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const userDoc = snapshot.docs[0];
 
-    res.status(200).json(userDoc.id);
+    res.status(200).json({ id: userDoc.id });
   } catch (error: any) {
     console.error('Error accessing Firestore:', error);
     res.status(500).json({ error: error.message });
