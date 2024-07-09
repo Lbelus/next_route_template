@@ -8,8 +8,15 @@ import Head from "next/head";
 export default function Home() {
   const router = useRouter();
   const { data: session, status } = useSession();
-  if (!session) {
-    typeof window !== 'undefined' && router.replace('/api/auth/signin');
+
+  if (status === 'loading') {
+    return <p>Loading...</p>; // Show a loading message while checking the session status
+  }
+
+  if (status === 'unauthenticated') {
+    if (typeof window !== 'undefined') {
+      router.replace('/api/auth/signin');
+    }
     return <p>Redirecting...</p>;
   }
 
